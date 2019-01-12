@@ -30,11 +30,11 @@ class EmailSendListener
     public function handle(EmailSend $event)
     {
 
-            $url = Storage::url('Bilal Ahmed.pdf');
+            $url = Storage::disk('local')->url($event->file);
        // $file = '/path/to/your/file';
-        $filesize = Storage::size('Bilal Ahmed.pdf');;
 
-
+//        $filesize = storage_path('uploads/'.$event->file);
+        $filesize = \Storage::disk('local')->size($event->file);
         Log::error($event->email);
         $data = array('name' => 'Bilal Ahmed', 'file' => $url, 'size'=> $filesize/1000000);
 

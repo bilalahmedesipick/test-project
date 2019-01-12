@@ -4,14 +4,17 @@ namespace App\Http\Controllers\API;
 
 use App\Events\EmailSend;
 use App\Jobs\UploadFile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\fileuploads;
 
 class FileController extends Controller
 {
+    use fileuploads;
     /**
      * Display a listing of the resource.
      *
@@ -31,11 +34,9 @@ class FileController extends Controller
     public function store(Request $request)
     {
 
-       $file=  $request->file;
-       $email= $request->email;
+//        $email= $request->email;
+        $this->upload_file($request);
 
-
-        UploadFile::dispatch($email, $file);
         Log::error('Upload Job Started');
 
     }
@@ -60,7 +61,7 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

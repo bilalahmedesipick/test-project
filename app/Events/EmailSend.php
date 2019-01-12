@@ -19,10 +19,11 @@ class EmailSend
      *
      * @return void
      */
-    public $email;
-    public function __construct($email)
+    public $email, $file;
+    public function __construct($email, $file)
     {
         $this->email = $email;
+        $this->file = $file;
     }
 
     /**

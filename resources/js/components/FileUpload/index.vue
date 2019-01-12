@@ -48,6 +48,7 @@
 
                 formdata.append('email', this.email);
                 this.file = this.$refs.file.files[0];
+
                 formdata.append('file', this.file);
                if(this.file.size > 2*1000000000){
                    console.log("uploaded file was greater then 2 GB");
