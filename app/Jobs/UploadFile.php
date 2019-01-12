@@ -24,9 +24,12 @@ class UploadFile implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public $email, $file;
+
+    public function __construct($email)
     {
-        //
+        $this->email =$email;
+//        $this->file = $file;
     }
 
     /**
@@ -38,7 +41,7 @@ class UploadFile implements ShouldQueue
     {
         //Putting our file to storage s
 //        Storage::disk('local')->put($file->getClientOriginalName(), file_get_contents($file->getRealPath()));
-        Event::fire(new EmailSend());
+        Event::fire(new EmailSend($this->email));
         Log::error('upload queue started');
         Queue::failing(function (JobFailedEvent $event){
             $event->exception;

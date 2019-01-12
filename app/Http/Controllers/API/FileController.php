@@ -35,7 +35,7 @@ class FileController extends Controller
        $email= $request->email;
 
 
-        UploadFile::dispatch();
+        UploadFile::dispatch($email, $file);
         Log::error('Upload Job Started');
 
     }
