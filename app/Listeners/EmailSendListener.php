@@ -31,11 +31,9 @@ class EmailSendListener
     {
 
             $url = Storage::disk('local')->url($event->file);
-       // $file = '/path/to/your/file';
 
-//        $filesize = storage_path('uploads/'.$event->file);
         $filesize = \Storage::disk('local')->size($event->file);
-        Log::error($event->email);
+     //   Log::error($event->email);
         $data = array('name' => 'Bilal Ahmed', 'file' => $url, 'size'=> $filesize/1000000);
 
             Mail::send('EmailTemplates.default', $data, function ($message) use ($event){
